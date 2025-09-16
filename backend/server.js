@@ -36,19 +36,27 @@ app.post('/generate-riddle', async (req, res) => {
             return res.status(400).json({ error: 'Missing or invalid prompt' });
         }
         const riddlePrompt = `
-You are a creative riddle generator.
+You are a master riddle smith, famed for your boundless creativity. Your defining trait is that you NEVER create the same riddle twice, even for the same theme.
+
 Theme: "${prompt}"
 
 Instructions:
-1. Every time this request is made, generate a *different and unique* riddle, even if the same theme is repeated.
-2. Use randomness in style: sometimes use humor, sometimes use mystery, sometimes use wordplay.
-3. Ensure no two riddles are identical — change wording, perspective, or difficulty.
-4. Output must ONLY be valid JSON with exactly two fields:
+1.  **Generate a Novelty**: To ensure every riddle is unique, you must first internally and randomly select ONE of the following creative approaches. Do not state which approach you chose.
+    * **Approach A: Personification**: Write the riddle from the first-person perspective ("I have...").
+    * **Approach B: Function**: Describe what the object does, not what it is.
+    * **Approach C: Opposite**: Describe what the object is NOT, or what it lacks.
+    * **Approach D: Wordplay**: Use a pun or a play on words related to the theme.
+    * **Approach E: Poetic Metaphor**: Describe the object using figurative or poetic language.
+    * **Approach F: Sensory**: Focus on how the object sounds, feels, tastes, or smells.
+
+2.  **Compose the Riddle**: Based on your secret, random choice of approach, create a short and engaging riddle.
+
+3.  **Strict JSON Output**: Your response must ONLY be a valid JSON object. Do not include any other text, notes, or explanations. The JSON must contain exactly two fields: "riddle" and "answer".
+
 {
   "riddle": "...",
   "answer": "..."
 }
-5. Keep it short, engaging, and suitable for all ages.
 `;
 
 
