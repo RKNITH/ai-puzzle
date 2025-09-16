@@ -36,18 +36,21 @@ app.post('/generate-riddle', async (req, res) => {
             return res.status(400).json({ error: 'Missing or invalid prompt' });
         }
         const riddlePrompt = `
-Create a fun and tricky riddle in English.
+You are a creative riddle generator.
 Theme: "${prompt}"
-Requirements:
-1. Always generate a new and unique riddle, even if the same theme is repeated multiple times.
-2. Vary the style, phrasing, and perspective each time.
-3. Output must be in JSON format with exactly two fields:
+
+Instructions:
+1. Every time this request is made, generate a *different and unique* riddle, even if the same theme is repeated.
+2. Use randomness in style: sometimes use humor, sometimes use mystery, sometimes use wordplay.
+3. Ensure no two riddles are identical — change wording, perspective, or difficulty.
+4. Output must ONLY be valid JSON with exactly two fields:
 {
   "riddle": "...",
   "answer": "..."
 }
-4. Keep it short, engaging, and suitable for all ages.
+5. Keep it short, engaging, and suitable for all ages.
 `;
+
 
 
         const payload = buildPayload(riddlePrompt);
